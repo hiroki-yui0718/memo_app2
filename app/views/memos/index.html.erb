@@ -1,0 +1,13 @@
+<article class="kiji">
+<h3>メモ一覧</h3>
+<table>
+<% @memos.each do |memo| %>
+<tr>
+<td>・<%= link_to memo.article,memo_path(memo)%></td>
+</tr>
+<tr>
+<td><%= truncate(memo.memo1,length:20) %></td>
+</tr>
+<% end %>
+</table>
+</article>

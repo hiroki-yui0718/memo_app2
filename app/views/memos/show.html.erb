@@ -1,0 +1,19 @@
+<article class="kiji">
+<h1><%= @memo.article %></h1>
+
+<%= image_tag(@memo.image,alt:"" ,class:"kijiimg") if @memo.image.attached?  %>
+
+<p class="lead"><%== @memo.memo1 %></p>
+
+
+<div class="honbun">
+<p><%== @memo.memo2 %></p>
+
+<p><%== @memo.memo3 %></p>
+
+<p><%== @memo.memo4 %></p>
+<%= link_to '編集する',edit_memo_path(@memo),class:"btn btn-primary mt-4 " %>
+<%= link_to '削除する',@memo,method: :delete,data:{confirm:'本当に削除しますか？'},class:"ml-3 btn btn-danger mt-4 " %>
+</div>
+
+</article>

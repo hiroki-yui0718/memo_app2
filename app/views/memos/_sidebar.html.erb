@@ -1,0 +1,15 @@
+<%= search_form_for @q do |f| %>
+    <table>
+    <tr>
+    <th><%= f.search_field :article_cont %></th>
+    <td><%= f.submit '検索' %></td>
+    </tr>
+    </table>
+    <% end %>
+<aside class="sidemenu mt-3">
+<ul>
+<% @memos.each do |memo| %>
+<li><%= link_to memo.article,memo_path(memo) %></li>
+<% end %>
+</ul>
+</aside>

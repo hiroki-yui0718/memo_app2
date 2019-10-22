@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      memo: メモ
+    attributes:
+      memo:
+        article: タイトル
+        memo1: メモ1
+        memo2: メモ2
+        memo3: メモ3
+        memo4: メモ4
+        image: 画像
+
