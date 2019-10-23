@@ -3,23 +3,31 @@ class SessionsController < ApplicationController
   def new
   end
   def create
-    user = User.find_by(email: session_params[:email])
-    if user&.authenticate(session_params[:password])
-    session[:user_id] = user.id
-    redirect_to memos_path,notice:"ログインしました"
+    if user = User.find_or_create_from_auth_hash(request.env['omniauth.auth'])
+      session[:user_id] = user.id
+      flash[:success] = "ログインしました"
+      redirect_to memos_path
+    elsif user = User.find_by(email: session_params[:email])
+        if user&.authenticate(session_params[:password])
+         session[:user_id] = user.id
+         flash[:success] = "ログインしました"
+         redirect_to memos_path
+      end
     else
+      falsh[:danger]="ログインに失敗しました"
       render :new
     end
   end
   def destroy
     reset_session
-    redirect_to root_path,notice:'ログアウトしました'
+    flash[:success] ='ログアウトしました'
+    redirect_to root_path
   end
 
   private def session_params
     params.require(:session).permit(
       :email,
-      :password
+      :password,
     )
   end
 end

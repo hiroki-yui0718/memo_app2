@@ -12,12 +12,17 @@
   <div class="container">
   <%= render "layouts/header" %>
   </div>
-  
-  <div class="box7">
-  <div class="box7-1">
+  <div class="container">
   <% if flash.notice.present? %>
   <%= flash.notice %>
   <% end %>
+  <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+  </div>
+  <div class="box7">
+  <div class="box7-1">
+
   <%= yield %>
   </div>
   <div class="box7-2">
